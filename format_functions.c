@@ -26,33 +26,33 @@ void print_char(va_list arg)
 */
 void print_int(va_list arg)
 {
-	int n = va_arg(arg, int);
-
-	if (n == 0)
-		putchar('0');
-	else
-		int_helper(n);
-}
-
-/**
- * int_helper - check test cases
- * @num: number to be printed
- *
- * Return: nothing
- */
-void int_helper(int num)
-{
+	int num = va_arg(arg, int);
+	int digit, divisor = 1;
+	
 	if (num < 0)
 	{
-		putchar('-');
 		num = -num;
+		_putchar('-');
 	}
+
 	if (num == 0)
 	{
-		return;
+		_putchar('0');
+		
 	}
-	int_helper(num / 10);
-	putchar((num % 10) + '0');
+
+	while (num / divisor > 9)
+	{
+		divisor *= 10;
+	}
+
+	while (divisor != 0)
+	{
+		digit = num / divisor;
+		_putchar(digit + '0');
+		num = num % divisor;
+		divisor /= 10;
+	}
 }
 
 
@@ -80,3 +80,15 @@ void print_string(va_list arg)
 		i++;
 	}
 }
+
+/**
+ * print_percent - print percent sign
+ * @arg: percent to be printed
+ *
+ * Return:nothing
+ */
+void print_percent()
+{
+	_putchar(37);
+}
+	

@@ -12,8 +12,11 @@ int _printf(const char *format, ...)
 	va_list ap;
 	int i, j;
 	func_fmt funcs[] = {
-		{'c', print_char},
-		{'s', print_string}
+		{"c", print_char},
+		{"s", print_string},
+		{"d", print_int},
+		{"i", print_int},
+		{"%", print_percent}
 	};
 
 
@@ -34,9 +37,9 @@ int _printf(const char *format, ...)
 			 * format is not equal to format in funcs
 			 * then j becomes j + 1
 			 */
-			while (j < 2 && (format[i] != (funcs[j].fmt)))
+			while (j < 5 && (format[i] != *(funcs[j].fmt)))
 				j++;
-			if (j < 2)
+			if (j < 5)
 			{
 				funcs[j].fn(ap);
 			}
