@@ -12,8 +12,10 @@
 void print_char(va_list arg)
 {
 	char c = va_arg(arg, int);
-
-	_putchar(c);
+	if(!c)
+		_putchar('\0');
+	else
+		_putchar(c);
 }
 
 /**
@@ -70,14 +72,15 @@ void print_string(va_list arg)
 	char *str = va_arg(arg, char *);
 	int i = 0;
 
-	if (str == NULL)
+	if (!str)
 	{
-		return;
-	}
-	while (str[i])
-	{
-		_putchar(str[i]);
-		i++;
+		_putchar('\0');
+	} else {
+		while (str[i])
+		{
+			_putchar(str[i]);
+			i++;
+		}
 	}
 }
 

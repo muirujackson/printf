@@ -23,15 +23,17 @@ int _printf(const char *format, ...)
 	i = 0;
 	if (format == NULL)
 		return (-1);
-	while (format && format[i])
+	while (format[i])
 	{
 		j = 0;
 
 		if (format[i] == '%')
 		{
 			i++;
-			if (!format[i])
+			if (format[i] == '\0')
 				return (-1);
+			if (format[i] == '%')
+				putchar(37);
 			while (j < 5 && (format[i] != *(funcs[j].fmt)))
 				j++;
 			if (j < 5)
