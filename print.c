@@ -31,6 +31,8 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+			if(!format[i])
+				return (-1);
 			/**
 			 * 4 equals to the number of funcs present
 			 * so if j is less than four and our current
