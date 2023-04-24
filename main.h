@@ -23,22 +23,18 @@
  *
  * @fmt: The format.
  * @fn: The function associated.
+ *
  */
-struct fmt
+typedef struct fmt
 {
 	char fmt;
-	int (*fn)(va_list, char[], int, int, int, int);
-};
+	void (*fn)(va_list);
+} func_fmt;
 
-
-/**
- * typedef struct fmt fmt_t - Struct op
- *
- * @fmt: The format.
- * @fm_t: The function associated.
- */
-typedef struct fmt fmt_t;
-
+int _putchar(char c);
 int _printf(const char *format, ...);
-int handle_print(const char *fmt, int *i,
+void print_string(va_list);
+void print_int(va_list);
+void print_char(va_list);
+void int_helper(int n);
 #endif
