@@ -20,6 +20,7 @@ struct fmtt
 
 typedef struct fmtt func_fmt;
 
+void get_format(const char *format, int *i, int *k, va_list arg);
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_string(va_list arg);
