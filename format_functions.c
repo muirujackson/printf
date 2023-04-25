@@ -34,12 +34,7 @@ int print_string(va_list arg)
 
 	if (str == NULL)
 	{
-		_putchar('(');
-		_putchar('n');
-		_putchar('u');
-		_putchar('l');
-		_putchar('l');
-		_putchar(')');
+		write(1, &"(null)", 6);
 		return (6);
 	}
 	while (str[i])
@@ -47,5 +42,5 @@ int print_string(va_list arg)
 		_putchar(str[i]);
 		i++;
 	}
-	return (i - 1);
+	return (i);
 }
