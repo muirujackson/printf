@@ -14,7 +14,7 @@
  */
 typedef struct fmt
 {
-	char *fmt;
+	char fmt;
 	int (*fn)(va_list arg);
 } func_fmt;
 
