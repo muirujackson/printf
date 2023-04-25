@@ -30,6 +30,7 @@ int print_int(va_list arg)
 {
 	int num = va_arg(arg, int);
 	int count = 0;
+	int digit, divisor = 1;
 
 	while(num != 0)
 	{
@@ -37,9 +38,6 @@ int print_int(va_list arg)
 		count++;
 	}
 
-
-	int digit, divisor = 1;
-	
 	if (num < 0)
 	{
 		num = -num;
@@ -78,13 +76,10 @@ int print_int(va_list arg)
  * Return: nothing
 */
 
-void print_string(va_list arg)
+int print_string(va_list arg)
 {
 	char *str = va_arg(arg, char *);
-	int i = 0; j = 0;
-
-	while(str[j])
-		j++;
+	int i = 0;
 
 	if (str == NULL)
 	{
@@ -97,4 +92,4 @@ void print_string(va_list arg)
 		i++;
 	}
 	return (i - 1);
-
+}

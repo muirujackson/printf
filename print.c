@@ -7,16 +7,16 @@
  * 
  * Return: number of int printed
  */
-int print_helper(const char *format, va_list arg)
+int print_helper(const char *format2, va_list arg)
 {
-	int k = 0;
+	int k = 0, j = 0;
 	func_fmt funcs[] = { 
 		{'c', print_char},
 		{'s', print_string},
 		{'d', print_int},
 		{'i', print_int}
 	};
-	while (j < 4 && (format[i + 1] != (funcs[j].fmt)))
+	while (j < 4 && (*(format2 + 1) != (funcs[j].fmt)))
 		j++;
 	if (j < 4)
 	{
@@ -24,9 +24,6 @@ int print_helper(const char *format, va_list arg)
 		return (k);
 	}
 	return (k);
-}
-
-
 }
 
 
@@ -51,6 +48,7 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
+			i++;
 			continue;
 		}
 
