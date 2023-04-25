@@ -28,14 +28,12 @@
 typedef struct fmt
 {
 	char *fmt;
-	void (*fn)(va_list arg);
+	int (*fn)(va_list arg);
 } func_fmt;
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-void print_string(va_list arg);
-void print_int(va_list arg);
-void print_char(va_list arg);
-void int_helper(int n);
-void print_percent();
+int print_string(va_list arg);
+int print_int(va_list arg);
+int print_char(va_list arg);
 #endif

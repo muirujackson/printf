@@ -10,13 +10,12 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i, j;
+	int i, j, k = 0;
 	func_fmt funcs[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{"d", print_int},
-		{"i", print_int},
-		{"%", print_percent}
+		{"i", print_int}
 	};
 
 	va_start(ap, format);
@@ -30,6 +29,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+			k--;
 			if (format[i] == '\0')
 				return (-1);
 			if (format[i] == '%')
@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 				j++;
 			if (j < 5)
 			{
-				funcs[j].fn(ap);
+				k += funcs[j].fn(ap);
 			}
 			i++;
 		}
@@ -48,5 +48,5 @@ int _printf(const char *format, ...)
 	_putchar('\n');
 
 	va_end(ap);
-	return (i);
+	return (i + k);
 }

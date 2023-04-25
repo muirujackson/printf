@@ -8,14 +8,15 @@
  *
  * Return: nothing
 */
-
-void print_char(va_list arg)
+int print_char(va_list arg)
 {
 	char c = va_arg(arg, int);
 	if(!c)
-		_putchar('\0');
-	else
+		return (1);
+	else {
 		_putchar(c);
+		return (1);
+	}
 }
 
 /**
@@ -26,21 +27,23 @@ void print_char(va_list arg)
  *
  * Return: nothing
 */
-void print_int(va_list arg)
+int print_int(va_list arg)
 {
 	int num = va_arg(arg, int);
 	int digit, divisor = 1;
-	
+	int i = 0;
+
 	if (num < 0)
 	{
 		num = -num;
 		_putchar('-');
+		i++;
 	}
 
 	if (num == 0)
 	{
 		_putchar('0');
-		
+		i++;
 	}
 
 	while (num / divisor > 9)
@@ -52,9 +55,11 @@ void print_int(va_list arg)
 	{
 		digit = num / divisor;
 		_putchar(digit + '0');
+		i++;
 		num = num % divisor;
 		divisor /= 10;
 	}
+	return (i);
 }
 
 
@@ -67,31 +72,26 @@ void print_int(va_list arg)
  * Return: nothing
 */
 
-void print_string(va_list arg)
+int print_string(va_list arg)
 {
 	char *str = va_arg(arg, char *);
 	int i = 0;
 
-	if (!str)
+	if (str == NULL)
 	{
-		_putchar('\0');
+		_putchar('(');
+		_putchar('n');
+		_putchar('u');
+		_putchar('l');
+		_putchar('l');
+		_putchar(')');
+		return (6);
 	} else {
 		while (str[i])
 		{
 			_putchar(str[i]);
 			i++;
 		}
+		return (i);
 	}
 }
-
-/**
- * print_percent - print percent sign
- * @arg: percent to be printed
- *
- * Return:nothing
- */
-void print_percent()
-{
-	_putchar(37);
-}
-	
