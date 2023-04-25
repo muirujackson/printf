@@ -36,14 +36,13 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		while (j < 2 && (format[i + 1] != (funcs[j].fmt)))
-				j++;
-			if (j < 2)
-			{
-				k += funcs[j].fn(ap);
-				i += 2;
-				continue;
-			} 
-			
+			j++;
+		if (j < 2)
+		{
+			k += funcs[j].fn(ap);
+			i += 2;
+			continue;
+		}
 		_putchar(format[i]);
 		_putchar(format[i + 1]);
 		i += 2;

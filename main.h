@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 /**
- * struct fmt - Struct op
+ * struct fmtt - Struct op
  *
  * @fmt: The format.
  * @fn: The function associated.
@@ -16,7 +16,7 @@ struct fmtt
 {
 	char fmt;
 	int (*fn)(va_list arg);
-}; 
+};
 
 typedef struct fmtt func_fmt;
 
