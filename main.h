@@ -10,11 +10,13 @@
  * @fn: The function associated.
  *
  */
-typedef struct fmt
+struct fmtt
 {
 	char fmt;
 	int (*fn)(va_list arg);
-} func_fmt;
+}; 
+
+typedef struct fmtt func_fmt;
 
 int _putchar(char c);
 int _printf(const char *format, ...);
