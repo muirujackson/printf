@@ -92,6 +92,6 @@ int print_string(va_list arg)
 			_putchar(str[i]);
 			i++;
 		}
-		return (i);
+		return (i - 1);
 	}
 }
