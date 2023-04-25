@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
 
 /**
  * _printf - function that produces output
@@ -13,9 +12,7 @@ int _printf(const char *format, ...)
 	int i, j, k = 0;
 	func_fmt funcs[] = {
 		{'c', print_char},
-		{'s', print_string},
-		{'d', print_int},
-		{'i', print_int}
+		{'s', print_string}
 	};
 
 	va_start(ap, format);
@@ -36,9 +33,9 @@ int _printf(const char *format, ...)
 			{	_putchar(37);
 				i++;
 			}
-			while (j < 4 && (format[i] != (funcs[j].fmt)))
+			while (j < 2 && (format[i] != (funcs[j].fmt)))
 				j++;
-			if (j < 4)
+			if (j < 2)
 			{
 				k += funcs[j].fn(ap);
 			}
