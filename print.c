@@ -55,6 +55,9 @@ int _printf(const char *format, ...)
 			continue;
 		}
 
+		if (format[i + 1] == ' ' && !format[i + 2])
+			return (-1);
+
 		if (format[i + 1] == '\0')
 			return (-1);
 
@@ -73,8 +76,8 @@ int _printf(const char *format, ...)
 			k -= 2;
 			continue;
 		}
-		write(1, &format[i + i], 1);
-		i +=2;
+		write(1, &format[i], 1);
+		i++;
 	}
 	va_end(ap);
 	return (i + k + j);
