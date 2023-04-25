@@ -4,19 +4,21 @@
 /**
  * print_helper - check the format
  * @format: the format to be printed
- * 
+ * @arg: all arguments
+ * @i: index
+ *
  * Return: number of int printed
  */
-int print_helper(const char *format2, va_list arg)
+int print_helper(const char *format, va_list arg, int i)
 {
 	int k = 0, j = 0;
-	func_fmt funcs[] = { 
+	func_fmt funcs[] = {
 		{'c', print_char},
 		{'s', print_string},
 		{'d', print_int},
 		{'i', print_int}
 	};
-	while (j < 4 && (*(format2 + 1) != (funcs[j].fmt)))
+	while (j < 4 && (format[i + 1] != (funcs[j].fmt)))
 		j++;
 	if (j < 4)
 	{
@@ -36,18 +38,18 @@ int print_helper(const char *format2, va_list arg)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i, k = 0;
+	int i = 0, j = 0, k = 0;
+
 
 	va_start(ap, format);
-	i = 0;
 	if (format == NULL)
 		return (-1);
 
-	while (format && format[i])
+	while (format && format[i] != '\0')
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
+			write(1, &format[i], 1);
 			i++;
 			continue;
 		}
@@ -57,20 +59,23 @@ int _printf(const char *format, ...)
 
 		if (format[i + 1] == '%')
 		{
-			_putchar('%');
+			j = j - 1;
+			write(1, &format[i], 1);
 			i += 2;
 			continue;
 		}
-		k = print_helper(format, ap);
+		k = print_helper(format, ap, i);
 
 		if (k > 0)
 		{
 			i += 2;
+			k -= 2;
 			continue;
 		}
-		_putchar(format[i]);
+		write(1, &format[i], 1);
 		i++;
 	}
 	va_end(ap);
-	return (i + k);
+	return (i + k + j);
 }
+

@@ -8,13 +8,13 @@
  *
  * Return: nothing
 */
-
 int print_char(va_list arg)
 {
 	char c = va_arg(arg, int);
-	if (!c)
+
+	if (c == '')
 		return (-1);
-	_putchar(c);
+	write(1, &c, 1);
 	return (1);
 }
 
@@ -29,26 +29,29 @@ int print_char(va_list arg)
 int print_int(va_list arg)
 {
 	int num = va_arg(arg, int);
+	int n = num;
 	int count = 0;
 	int digit, divisor = 1;
+	char neg = '-', zero = '0', p;
 
-	while(num != 0)
+	while (n != 0)
 	{
-		num /= 10;
+		n /= 10;
 		count++;
 	}
 
 	if (num < 0)
 	{
 		num = -num;
-		_putchar('-');
+
+		write(1, &neg, 1);
 		count++;
 	}
 
 	if (num == 0)
 	{
-		_putchar('0');
-		
+		write(1, &zero, 1);
+
 	}
 
 	while (num / divisor > 9)
@@ -59,7 +62,8 @@ int print_int(va_list arg)
 	while (divisor != 0)
 	{
 		digit = num / divisor;
-		_putchar(digit + '0');
+		p = digit + '0';
+		write(1, &p, 1);
 		num = num % divisor;
 		divisor /= 10;
 	}
@@ -88,8 +92,9 @@ int print_string(va_list arg)
 	}
 	while (str[i])
 	{
-		_putchar(str[i]);
+		write(1, &str[i], 1);
 		i++;
 	}
 	return (i - 1);
 }
+
