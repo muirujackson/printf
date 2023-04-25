@@ -19,50 +19,6 @@ int print_char(va_list arg)
 }
 
 /**
- * print_int - print an integer
- *
- * @arg: a list of argument pointing
- *      to the character to be printed
- *
- * Return: nothing
-*/
-int print_int(va_list arg)
-{
-	int num = va_arg(arg, int);
-	int digit, divisor = 1;
-	int i = 0;
-
-	if (num < 0)
-	{
-		num = -num;
-		_putchar('-');
-		i++;
-	}
-
-	if (num == 0)
-	{
-		_putchar('0');
-		i++;
-	}
-
-	while (num / divisor > 9)
-	{
-		divisor *= 10;
-	}
-
-	while (divisor != 0)
-	{
-		digit = num / divisor;
-		_putchar(digit + '0');
-		i++;
-		num = num % divisor;
-		divisor /= 10;
-	}
-	return (i);
-}
-
-
-/**
  * print_string - print a string
  *
  * @arg: a list of argument pointing

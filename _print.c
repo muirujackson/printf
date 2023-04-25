@@ -9,20 +9,17 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i, j, k = 0;
+	int i = 0, j = 0, k = 0;
 	func_fmt funcs[] = {
 		{'c', print_char},
 		{'s', print_string}
 	};
 
 	va_start(ap, format);
-	i = 0;
 	if (format == NULL)
 		return (-1);
 	while (format[i])
 	{
-		j = 0;
-
 		if (format[i] == '%')
 		{
 			i++;
@@ -45,7 +42,6 @@ int _printf(const char *format, ...)
 		i++;
 		}
 	}
-
 	va_end(ap);
 	return (i + k);
 }
