@@ -42,7 +42,8 @@ int _printf(const char *format, ...)
 			{
 				k += funcs[j].fn(ap);
 			}
-		} else {
+		} else
+		{
 		_putchar(format[i]);
 		i++;
 		}

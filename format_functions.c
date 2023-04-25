@@ -11,12 +11,11 @@
 int print_char(va_list arg)
 {
 	char c = va_arg(arg, int);
-	if(!c)
+
+	if (!c)
 		return (1);
-	else {
-		_putchar(c);
+	_putchar(c);
 		return (1);
-	}
 }
 
 /**
@@ -86,12 +85,11 @@ int print_string(va_list arg)
 		_putchar('l');
 		_putchar(')');
 		return (6);
-	} else {
-		while (str[i])
-		{
-			_putchar(str[i]);
-			i++;
-		}
-		return (i - 1);
 	}
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i - 1);
 }
