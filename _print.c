@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				return (-1);
 			if (format[i] == '%')
-				putchar(37);
+				_putchar(37);
 			while (j < 5 && (format[i] != *(funcs[j].fmt)))
 				j++;
 			if (j < 5)
