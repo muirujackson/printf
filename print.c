@@ -73,8 +73,8 @@ int _printf(const char *format, ...)
 			k -= 2;
 			continue;
 		}
-		write(1, &format[i], 1);
-		i++;
+		write(1, &format[i + i], 1);
+		i +=2;
 	}
 	va_end(ap);
 	return (i + k + j);
