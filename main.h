@@ -27,10 +27,11 @@
  */
 typedef struct fmt
 {
-	char *fmt;
+	char fmt;
 	void (*fn)(va_list arg);
 } func_fmt;
 
+int print_helper(const char *format, va_list arg);
 int _putchar(char c);
 int _printf(const char *format, ...);
 void print_string(va_list arg);

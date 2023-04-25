@@ -2,6 +2,35 @@
 #include <stdarg.h>
 
 /**
+ * print_helper - check the format
+ * @format: the format to be printed
+ * 
+ * Return: number of int printed
+ */
+int print_helper(const char *format, va_list arg)
+{
+	int k = 0;
+	func_fmt funcs[] = { 
+		{'c', print_char},
+		{'s', print_string},
+		{'d', print_int},
+		{'i', print_int}
+	};
+	while (j < 4 && (format[i + 1] != (funcs[j].fmt)))
+		j++;
+	if (j < 4)
+	{
+		k = funcs[j].fn(arg);
+		return (k);
+	}
+	return (k);
+}
+
+
+}
+
+
+/**
  * _printf - function that produces output
  * @format: string that specify the format
  *
@@ -10,14 +39,7 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i, j;
-	func_fmt funcs[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"d", print_int},
-		{"i", print_int},
-		{"%", print_percent}
-	};
+	int i, k = 0;
 
 	va_start(ap, format);
 	i = 0;
@@ -26,8 +48,6 @@ int _printf(const char *format, ...)
 
 	while (format && format[i])
 	{
-		j = 0;
-
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
@@ -43,11 +63,10 @@ int _printf(const char *format, ...)
 			i += 2;
 			continue;
 		}
-		while (j < 5 && (format[i] != *(funcs[j].fmt)))
-			j++;
-		if (j < 5)
+		k = print_helper(format, ap);
+
+		if (k > 0)
 		{
-			funcs[j].fn(ap);
 			i += 2;
 			continue;
 		}
@@ -55,5 +74,5 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(ap);
-	return (i);
+	return (i + k);
 }
