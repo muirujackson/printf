@@ -15,11 +15,12 @@ int print_helper(const char *format, va_list arg, int i)
 		{'c', print_char},
 		{'s', print_string},
 		{'d', print_int},
-		{'i', print_int}
+		{'i', print_int},
+		{'b', int_to_bin}
 	};
-	while (j < 4 && (format[i + 1] != (funcs[j].fmt)))
+	while (j < 5 && (format[i + 1] != (funcs[j].fmt)))
 		j++;
-	if (j < 4)
+	if (j < 5)
 	{
 		k = funcs[j].fn(arg);
 		return (k);

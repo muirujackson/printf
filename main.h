@@ -24,6 +24,6 @@ int _printf(const char *format, ...);
 int print_string(va_list arg);
 int print_int(va_list arg);
 int print_char(va_list arg);
-
+int int_to_bin(va_list arg);
 #endif
 
