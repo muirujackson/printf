@@ -3,6 +3,8 @@
 /**
  * print_helper - check the format
  * @format: the format to be printed
+ * @arg: argumnets
+ * @i: int
  *
  * Return: number of int printed
  */
@@ -16,13 +18,14 @@ int print_helper(const char *format, va_list arg, int i)
 		{'i', print_int},
 		{'b', int_to_bin}
 		};
-	while (j < 5 && (format[i+1] != (funcs[j].fmt)))
+
+	while (j < 5 && (format[i + 1] != (funcs[j].fmt)))
 		j++;
 	if (j < 5)
 	{
 		k = funcs[j].fn(arg);
 		return (k);
-    }
+	}
 	return (k);
 }
 
@@ -47,7 +50,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-		    write(1, &format[i], 1);
+			write(1, &format[i], 1);
 			i++;
 			continue;
 		}
