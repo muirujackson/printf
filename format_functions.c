@@ -12,11 +12,13 @@ int int_to_bin(va_list arg)
     int num = va_arg(arg, int);
     int binary[32];
     int index = 0;
+    int i;
     while (num > 0) {
         binary[index++] = num % 2;
         num /= 2;
     }
-    for (int i = index - 1; i >= 0; i--) {
+
+    for (i = index - 1; i >= 0; i--) {
         char b = binary[i] + '0';
         write(1, &b, 1);
     }
