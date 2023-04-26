@@ -38,13 +38,13 @@ int print_helper(const char *format, va_list arg, int i)
  */
 int _printf(const char *format, ...)
 {
-	if (format == NULL)
-		return -1;
-
 	va_list ap;
-	va_start(ap, format);
 
 	int pos = 0, num_printed = 0;
+	va_start(ap, format);
+
+	if (format == NULL)
+ 		return (-1);
 	while (format[pos] != '\0')
 	{
 		if (format[pos] != '%')
