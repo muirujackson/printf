@@ -39,60 +39,44 @@ int print_helper(const char *format, va_list arg, int i)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int pos = 0, num_printed = 0;
+	int i = 0, j = 0, k = 0;
+
 
 	va_start(ap, format);
 	if (format == NULL)
 		return (-1);
-	while (format[pos] != '\0')
+
+	while (format && format[i] != '\0')
 	{
-		if (format[pos] != '%')
+		if (format[i] != '%')
 		{
-			write(1, &format[pos], 1);
-			num_printed++;
-			pos++;
-		} else
-		{
-			if (format[pos + 1] == '\0')
-				return (-1);
-			else if (format[pos + 1] == '%')
-			{
-				write(1, "%", 1);
-				num_printed++;
-				pos += 2;
-			} else if (format[pos + 1] == 'c')
-			{
-				char c = va_arg(ap, int);
-
-				write(1, &c, 1);
-				num_printed++;
-				pos += 2;
-			} else if (format[pos + 1] == 's')
-			{
-				char *str = va_arg(ap, char *);
-				int i = 0;
-
-				if (str == NULL)
-				{
-					write(1, &"(null)", 6);
-					return (6);
-				}
-				while (str[i])
-				{
-					write(1, &str[i], 1);
-					i++;
-				}
-				pos += 2;
-				num_printed += (i - 1);
-			} else
-			{
-				write(1, &format[pos], 1);
-				write(1, &format[pos + 1], 1);
-				pos += 2;
-				num_printed += 2;
-			}
+			write(1, &format[i], 1);
+			i++;
+			continue;
 		}
+
+		if (format[i + 1] == '\0')
+			return (-1);
+
+		if (format[i + 1] == '%')
+		{
+			j = j - 1;
+			write(1, "%", 1);
+			i += 2;
+			continue;
+		}
+		k = print_helper(format, ap, i);
+
+		if (k > 0)
+		{
+			i += 2;
+			k -= 2;
+			continue;
+		}
+		write(1, &format[i], 1);
+		i++;
 	}
 	va_end(ap);
-	return (num_printed);
+	return (i + k + j);
 }
+
