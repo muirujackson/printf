@@ -69,6 +69,9 @@ int _printf(const char *format, ...)
 		}
 		k = print_helper(format, ap, i);
 
+		if (k < 0)
+			return -1;
+
 		if (k > 0)
 		{
 			i += 2;
