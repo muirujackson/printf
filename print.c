@@ -54,16 +54,13 @@ int _printf(const char *format, ...)
 			continue;
 		}
 
-		if (format[i + 1] == ' ' && !format[i + 2])
-			return (-1);
-
 		if (format[i + 1] == '\0')
 			return (-1);
 
 		if (format[i + 1] == '%')
 		{
 			j = j - 1;
-			write(1, &format[i], 1);
+			write(1, "%", 1);
 			i += 2;
 			continue;
 		}

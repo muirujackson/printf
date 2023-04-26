@@ -30,7 +30,7 @@ int print_int(va_list arg)
 	int n = num;
 	int count = 0;
 	int digit, divisor = 1;
-	char neg = '-', zero = '0', p;
+	char p;
 
 	while (n != 0)
 	{
@@ -42,13 +42,13 @@ int print_int(va_list arg)
 	{
 		num = -num;
 
-		write(1, &neg, 1);
+		write(1, "-", 1);
 		count++;
 	}
 
 	if (num == 0)
 	{
-		write(1, &zero, 1);
+		write(1, "0", 1);
 
 	}
 
