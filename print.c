@@ -8,9 +8,9 @@
  *
  * Return: number of int printed
  */
-int print_helper(const char *format, va_list arg, int i)
+void print_helper(const char *format, va_list arg, int *pos, int *num_printed)
 {
-	int k = 0, j = 0;
+	int j = 0;
 	func_fmt funcs[] = {
 		{'c', print_char},
 		{'s', print_string},
@@ -19,14 +19,15 @@ int print_helper(const char *format, va_list arg, int i)
 		{'b', int_to_bin}
 		};
 
-	while (j < 5 && (format[i + 1] != (funcs[j].fmt)))
+	while (j < 5 && (format[(*pos) + 1] != (funcs[j].fmt)))
 		j++;
 	if (j < 5)
 	{
-		k = funcs[j].fn(arg);
-		return (k);
+		(*num_printed) += funcs[j].fn(arg);
 	}
-	return (k);
+	write(1, &format[*pos], 1);
+	(*num_printed)++;
+	(*pos)++;
 }
 
 
@@ -39,44 +40,36 @@ int print_helper(const char *format, va_list arg, int i)
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int i = 0, j = 0, k = 0;
+	int pos = 0, num_printed = 0;
 
 
 	va_start(ap, format);
 	if (format == NULL)
 		return (-1);
 
-	while (format && format[i] != '\0')
+	while (format && format[pos] != '\0')
 	{
-		if (format[i] != '%')
+		if (format[pos] != '%')
 		{
-			write(1, &format[i], 1);
-			i++;
+			write(1, &format[pos], 1);
+			pos++;
+			num_printed++;
 			continue;
 		}
 
-		if (format[i + 1] == '\0')
+		if (format[pos + 1] == '\0')
 			return (-1);
 
-		if (format[i + 1] == '%')
+		if (format[pos + 1] == '%')
 		{
-			j = j - 1;
 			write(1, "%", 1);
-			i += 2;
+			pos += 2;
+			num_printed++;
 			continue;
 		}
-		k = print_helper(format, ap, i);
-
-		if (k > 0)
-		{
-			i += 2;
-			k -= 2;
-			continue;
-		}
-		write(1, &format[i], 1);
-		i++;
+		print_helper(format, ap,&pos, &num_printed);
 	}
 	va_end(ap);
-	return (i + k + j);
+	return (num_printed);
 }
 

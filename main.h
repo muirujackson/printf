@@ -17,8 +17,7 @@ typedef struct fmt
 	char fmt;
 	int (*fn)(va_list arg);
 } func_fmt;
-
-int print_helper(const char *format, va_list arg, int i);
+void print_helper(const char *format, va_list arg, int *pos, int *num_printed);
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_string(va_list arg);
