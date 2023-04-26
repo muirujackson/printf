@@ -23,6 +23,8 @@ int print_helper(const char *format, va_list arg, int i)
 	if (j < 5)
 	{
 		k = funcs[j].fn(arg);
+		if (k < 0)
+			return (-1);
 		return (k);
 	}
 	return (k);

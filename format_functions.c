@@ -14,6 +14,8 @@ int int_to_bin(va_list arg)
 	int index = 0;
 	int i;
 
+	if (num < 0)
+		return (-1);
 	while (num > 0)
 	{
 		binary[index++] = num % 2;
