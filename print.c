@@ -54,32 +54,29 @@ int _printf(const char *format, ...)
 		{
 			write(1, &format[i], 1);
 			i++;
-			continue;
-		}
-
-		if (format[i + 1] == '\0')
-			return (-1);
-
-		if (format[i + 1] == '%')
+		} else 
 		{
-			j = j - 1;
-			write(1, "%", 1);
-			i += 2;
-			continue;
+			if (format[i + 1] == '\0')
+				return (-1);
+			else if (format[i + 1] == '%')
+			{
+				j = j - 1;
+				write(1, "%", 1);
+				i += 2;
+				continue;
+			}
+			k = print_helper(format, ap, i);
+			if (k < 0)
+				return -1;
+			else
+			{
+				i += 2;
+				k -= 2;
+				continue;
+			}
+			write(1, &format[i], 1);
+			i++;
 		}
-		k = print_helper(format, ap, i);
-
-		if (k < 0)
-			return -1;
-
-		if (k > 0)
-		{
-			i += 2;
-			k -= 2;
-			continue;
-		}
-		write(1, &format[i], 1);
-		i++;
 	}
 	va_end(ap);
 	return (i + k + j);
