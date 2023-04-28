@@ -118,11 +118,11 @@ int print_string(va_list arg)
 		write(1, &"(null)", 6);
 		return (6);
 	}
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		write(1, &str[i], 1);
 		i++;
 	}
-	return (i - 1);
+	return (i);
 }
 
