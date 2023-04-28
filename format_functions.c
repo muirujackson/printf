@@ -28,7 +28,7 @@ int int_to_bin(va_list arg)
 
 		write(1, &b, 1);
 	}
-	return (index);
+	return (index - 1);
 }
 /**
  * print_char - print a char
