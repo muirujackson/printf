@@ -65,7 +65,7 @@ int _printf(const char *format, ...)
 			i += 2;
 			continue;
 		}
-		k = print_helper(format, ap, i);
+		k += print_helper(format, ap, i);
 
 		if (k > 0)
 		{
