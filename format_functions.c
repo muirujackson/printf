@@ -79,6 +79,7 @@ int print_int(va_list arg)
 	if (num == 0)
 	{
 		write(1, "0", 1);
+		count++;
 
 	}
 
@@ -123,6 +124,6 @@ int print_string(va_list arg)
 		write(1, &str[i], 1);
 		i++;
 	}
-	return (i - 1);
+	return (i);
 }
 
