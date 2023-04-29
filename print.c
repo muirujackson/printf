@@ -69,10 +69,14 @@ int _printf(const char *format, ...)
 
 		if (k > 0)
 		{
+			if (format[i + 2] != '\0')
+			{
 				i += 2;
 				k -= 2;
 				continue;
-
+			}else
+				return (k + i + j);
+			
 		}
 		write(1, &format[i], 1);
 		i++;
