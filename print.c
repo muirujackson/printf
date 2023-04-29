@@ -80,9 +80,11 @@ int _printf(const char *format, ...)
 			}else
 				return (k + i + j);
 			
+		}else
+		{
+			write(1, &format[i], 1);
+			++;
 		}
-		write(1, &format[i], 1);
-		i++;
 	}
 	va_end(ap);
 	return (i + k + j);
