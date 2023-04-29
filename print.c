@@ -10,7 +10,7 @@
  */
 int print_helper(const char *format, va_list arg, int i)
 {
-	int k = 0, j = 0;
+	unsigned int k = 0, j = 0;
 	func_fmt funcs[] = {
 		{'c', print_char},
 		{'s', print_string},

@@ -111,7 +111,7 @@ int print_int(va_list arg)
 int print_string(va_list arg)
 {
 	char *str = va_arg(arg, char *);
-	int i = 0;
+	unsigned int i = 0;
 
 	if (str == NULL)
 	{
