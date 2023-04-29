@@ -18,7 +18,8 @@ int int_to_bin(va_list arg)
 		return (-1);
 	while (num > 0)
 	{
-		binary[index++] = num % 2;
+		binary[index] = num % 2;
+		index++;
 		num /= 2;
 	}
 
