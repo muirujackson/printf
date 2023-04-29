@@ -10,12 +10,12 @@
 int int_to_bin(va_list arg)
 {
 	int num = va_arg(arg, int);
-	int binary[32];
+	int binary[127];
 	int index = 0;
 	int i;
 
-	if (num < 0)
-		return (-1);
+	if (num == 0)
+		return (0);
 	while (num > 0)
 	{
 		binary[index++] = num % 2;
