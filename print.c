@@ -67,6 +67,9 @@ int _printf(const char *format, ...)
 		}
 		k += print_helper(format, ap, i);
 
+		if (k == 0 && (format[i + 1] == 'd'))
+			return 0;
+		
 		if (k > 0)
 		{
 			if (format[i + 2] != '\0')
