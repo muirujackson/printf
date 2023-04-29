@@ -10,12 +10,12 @@
 int int_to_bin(va_list arg)
 {
 	int num = va_arg(arg, int);
-	int binary[127];
+	int binary[32];
 	int index = 0;
 	int i;
 
-	if (num == 0)
-		return (0);
+	if (num < 0)
+		return (-1);
 	while (num > 0)
 	{
 		binary[index++] = num % 2;
@@ -111,18 +111,18 @@ int print_int(va_list arg)
 int print_string(va_list arg)
 {
 	char *str = va_arg(arg, char *);
-	unsigned int i = 0;
+	int i = 0;
 
 	if (str == NULL)
 	{
 		write(1, &"(null)", 6);
 		return (6);
 	}
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		write(1, &str[i], 1);
 		i++;
 	}
-	return (i);
+	return (i - 1);
 }
 

@@ -10,7 +10,7 @@
  */
 int print_helper(const char *format, va_list arg, int i)
 {
-	unsigned int k = 0, j = 0;
+	int k = 0, j = 0;
 	func_fmt funcs[] = {
 		{'c', print_char},
 		{'s', print_string},
@@ -65,21 +65,13 @@ int _printf(const char *format, ...)
 			i += 2;
 			continue;
 		}
-		k += print_helper(format, ap, i);
+		k = print_helper(format, ap, i);
 
-		if (k == 0 && (format[i + 1] == 'd'))
-			return (0);
-		
 		if (k > 0)
 		{
-			if (format[i + 2] != '\0')
-			{
-				i += 2;
-				k -= 2;
-				continue;
-			}else
-				return (k + i + j);
-			
+			i += 2;
+			k -= 2;
+			continue;
 		}
 		write(1, &format[i], 1);
 		i++;
