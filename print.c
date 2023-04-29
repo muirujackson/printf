@@ -8,7 +8,7 @@
  *
  * Return: number of int printed
  */
-int print_helper(const char *format, va_list arg, int *i)
+int print_helper(const char *format, va_list arg, int i)
 {
 	int k = 0, j = 0;
 	func_fmt funcs[] = {
@@ -19,7 +19,7 @@ int print_helper(const char *format, va_list arg, int *i)
 		{'b', int_to_bin}
 		};
 
-	while (j < 5 && (format[(*i + 1)] != (funcs[j].fmt)))
+	while (j < 5 && (format[i + 1] != (funcs[j].fmt)))
 		j++;
 	if (j < 5)
 	{
@@ -60,17 +60,12 @@ int _printf(const char *format, ...)
 
 		if (format[i + 1] == '%')
 		{
-			if (format[i + 2] == '\0')
-			{
-				i++;
-				return (i + j + k);
-			}
 			j = j - 1;
 			write(1, "%", 1);
 			i += 2;
 			continue;
 		}
-		k += print_helper(format, ap, &i);
+		k += print_helper(format, ap, i);
 
 		if (k > 0)
 		{

@@ -113,9 +113,6 @@ int print_string(va_list arg)
 	char *str = va_arg(arg, char *);
 	int i = 0;
 
-	if (str[1] == '\0')
-		return (1);
-
 	if (str == NULL)
 	{
 		write(1, &"(null)", 6);
